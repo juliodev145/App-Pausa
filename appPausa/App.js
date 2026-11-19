@@ -21,10 +21,10 @@ import {
 } from './src/utils/helpers';
 
 import Home from './src/screens/Home';
-// import SelectScreen from './src/screens/SelectScreen';
-// import TimerScreen from './src/screens/TimerScreen';
-// import FeedbackScreen from './src/screens/FeedbackScreen';
-// import HistoryScreen from './src/screens/HistoryScreen';
+import Select from './src/screens/Select';
+import Timer from './src/screens/Timer';
+import Feedback from './src/screens/Feedback';
+import History from './src/screens/History';
 
 const DEFAULT_MINUTES = 15;
 const MIN_MINUTES = 1;
@@ -244,9 +244,20 @@ export default function App() {
             />
           )}
 
-          {/* AS OUTRAS TELAS ENTRAM AQUI NAS PRÓXIMAS ETAPAS
+          {state === 'history' && (
+            <History
+              monthName={monthName}
+              monthActivity={monthActivity}
+              activeDayCount={activeDayCount}
+              monthlyGoal={monthlyGoal}
+              remainingDays={remainingDays}
+              totalPauses={stats.totalPauses}
+              onBack={() => setState('home')}
+            />
+          )}
+
           {state === 'select' && (
-            <SelectScreen
+            <Select
               customTheme={customTheme}
               onChangeTheme={setCustomTheme}
               selectedMinutes={selectedMinutes}
@@ -259,7 +270,7 @@ export default function App() {
           )}
 
           {state === 'timer' && (
-            <TimerScreen
+            <Timer
               activeTheme={activeTheme}
               timeLeft={timeLeft}
               currentTip={currentTip}
@@ -271,21 +282,8 @@ export default function App() {
           )}
 
           {state === 'feedback' && (
-            <FeedbackScreen onAnswer={handleFeedback} />
+            <Feedback onAnswer={handleFeedback} />
           )}
-
-          {state === 'history' && (
-            <HistoryScreen
-              monthName={monthName}
-              monthActivity={monthActivity}
-              activeDayCount={activeDayCount}
-              monthlyGoal={monthlyGoal}
-              remainingDays={remainingDays}
-              totalPauses={stats.totalPauses}
-              onBack={() => setState('home')}
-            />
-          )}
-          */}
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
